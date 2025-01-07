@@ -14,9 +14,6 @@ public record DatosRegistroTopico(
         @NotNull(message = "El mensaje es obligatorio")
         String mensaje,
 
-        @NotNull(message = "La fecha es obligatoria")
-        LocalDateTime fecha,
-
         @NotNull(message = "El status es obligatorio")
         StatusTopico status,
 

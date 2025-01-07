@@ -4,12 +4,15 @@ import com.forohub.api.domain.curso.CategoriaCurso;
 import com.forohub.api.domain.curso.Curso;
 import com.forohub.api.domain.curso.CursoRepository;
 import com.forohub.api.domain.topico.DatosRegistroTopico;
+import com.forohub.api.domain.topico.StatusTopico;
 import com.forohub.api.domain.topico.Topico;
 import com.forohub.api.domain.topico.TopicoRepository;
 import com.forohub.api.domain.usuario.Usuario;
 import com.forohub.api.domain.usuario.UsuarioRepository;
 import com.forohub.api.infra.errores.ValidacionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,12 +44,29 @@ public class TopicoService {
         return topicoRepository.save(topico);
     }
 
-    // Método para obtener todos los topicos
-    public List<Topico> obtenerTodosLosTopicos() {
-        return topicoRepository.findAll();
+    public Topico actualizarEstadoTopico(Long id, DatosRegistroTopico datosRegistroTopico) {
+        Topico topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Topico no encontrado"));
+
+        if (topico.getStatus() == StatusTopico.CERRADO && datosRegistroTopico.status() == StatusTopico.ABIERTO) {
+            throw new IllegalArgumentException("No puedes cambiar el estado de CERRADO a ABIERTO");
+        }
+
+        topico.cambiarEstado(datosRegistroTopico.status());
+        return topicoRepository.save(topico);
     }
 
-    public Optional<Topico> obtenerTopicoPorId(Long id) {
-        return topicoRepository.findById(id);
+    public Topico obtenerTopicoPorId(Long id) {
+        Topico topico = topicoRepository.findByIdWithRespuestas(id)
+                .orElseThrow(() -> new IllegalArgumentException("Tópico no encontrado"));
+
+        topico.getRespuestas().size();
+
+        return topico;
+    }
+
+    public Page<Topico> obtenerTodosLosTopicos(Pageable pageable) {
+        Page<Topico> topicos = topicoRepository.findAll(pageable);
+        return topicos;
     }
 }
