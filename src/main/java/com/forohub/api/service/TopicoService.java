@@ -69,4 +69,11 @@ public class TopicoService {
         Page<Topico> topicos = topicoRepository.findAll(pageable);
         return topicos;
     }
+
+    public void eliminarTopico(Long id) {
+        Topico topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Tópico no encontrado"));
+        topico.desactivarTopico();
+        topicoRepository.save(topico);
+    }
 }

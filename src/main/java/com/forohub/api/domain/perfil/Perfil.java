@@ -1,5 +1,6 @@
 package com.forohub.api.domain.perfil;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Perfil {
 
     @Id
@@ -19,4 +21,10 @@ public class Perfil {
     private Long id;
 
     private String nombre;
+
+    public Perfil () {}
+
+    public Perfil(String nombre) {
+        this.nombre = nombre;
+    }
 }

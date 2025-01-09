@@ -6,6 +6,7 @@ import com.forohub.api.domain.topico.DatosRegistroTopico;
 import com.forohub.api.domain.topico.Topico;
 import com.forohub.api.domain.usuario.Usuario;
 import com.forohub.api.service.TopicoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,7 +46,7 @@ public class TopicoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crearTopico(@Valid @RequestBody DatosRegistroTopico datosRegistroTopico) {
+    public ResponseEntity<DatosRegistroTopico> crearTopico(@Valid @RequestBody DatosRegistroTopico datosRegistroTopico) {
         topicoService.crearTopico(datosRegistroTopico);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -55,5 +56,12 @@ public class TopicoController {
                                                    @RequestBody DatosRegistroTopico datos) {
         Topico topicoActualizado = topicoService.actualizarEstadoTopico(id, datos);
         return ResponseEntity.ok(topicoActualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id) {
+        topicoService.eliminarTopico(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -2,6 +2,7 @@ package com.forohub.api.domain.usuario;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
 import java.util.Set;
 
 public record DatosRegistroUsuario(
@@ -14,7 +15,8 @@ public record DatosRegistroUsuario(
         @NotNull(message = "La contraseña es obligatoria")
         String contrasena,
 
-        Set<Long> perfilId
+        @NotNull
+        List<Long> perfilesIds
 
 ) {
 }

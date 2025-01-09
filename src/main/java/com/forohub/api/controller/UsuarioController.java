@@ -8,8 +8,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -20,8 +23,15 @@ public class UsuarioController {
 
     // Endpoint para crear un usuario
     @PostMapping
-    public Usuario crearUsuario(@Valid @RequestBody DatosRegistroUsuario datosRegistroUsuario) {
-        return usuarioService.crearUsuario(datosRegistroUsuario);
+    public ResponseEntity<Usuario> registrarUsuario(@Valid @RequestBody DatosRegistroUsuario datos) {
+        Usuario usuario = usuarioService.registrarUsuario(datos);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    }
+
+    @PutMapping("/{id}/perfiles")
+    public ResponseEntity<Usuario> actualizarPerfiles(@PathVariable Long id, @RequestBody List<Long> perfilesIds) {
+        Usuario usuario = usuarioService.actualizarPerfiles(id, perfilesIds);
+        return ResponseEntity.ok(usuario);
     }
 
     @GetMapping

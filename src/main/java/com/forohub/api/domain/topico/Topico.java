@@ -35,6 +35,8 @@ public class Topico {
 
     private LocalDateTime fecha;
 
+    private boolean activo;
+
     @Enumerated(EnumType.STRING)
     private StatusTopico status;
 
@@ -62,6 +64,7 @@ public class Topico {
 
 
     public Topico(DatosRegistroTopico datosRegistroTopico, Curso curso, Usuario autor) {
+        this.activo = true;
         this.titulo = datosRegistroTopico.titulo();
         this.mensaje = datosRegistroTopico.mensaje();
         this.fecha = LocalDateTime.now();
@@ -72,5 +75,9 @@ public class Topico {
 
     public void cambiarEstado(StatusTopico nuevoEstado) {
         this.status = nuevoEstado;
+    }
+
+    public void desactivarTopico() {
+        this.activo = false;
     }
 }
