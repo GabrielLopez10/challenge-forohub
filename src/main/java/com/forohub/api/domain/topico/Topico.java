@@ -46,7 +46,7 @@ public class Topico {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
-    private Usuario autor;
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "topico", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -63,14 +63,14 @@ public class Topico {
     }
 
 
-    public Topico(DatosRegistroTopico datosRegistroTopico, Curso curso, Usuario autor) {
+    public Topico(DatosRegistroTopico datosRegistroTopico, Curso curso, Usuario usuario) {
         this.activo = true;
         this.titulo = datosRegistroTopico.titulo();
         this.mensaje = datosRegistroTopico.mensaje();
         this.fecha = LocalDateTime.now();
         this.status = datosRegistroTopico.status();
         this.curso = curso;
-        this.autor = autor;
+        this.usuario = usuario;
     }
 
     public void cambiarEstado(StatusTopico nuevoEstado) {

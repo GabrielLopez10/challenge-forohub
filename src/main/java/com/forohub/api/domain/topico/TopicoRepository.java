@@ -15,7 +15,7 @@ public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     @Query("SELECT t FROM Topico t " +
             "LEFT JOIN FETCH t.curso " +
-            "LEFT JOIN FETCH t.autor " +
+            "LEFT JOIN FETCH t.usuario " +
             "LEFT JOIN FETCH t.respuestas  " +
             "WHERE t.id = :id")
     Optional<Topico> findByIdWithRespuestas(@Param("id") Long id);
