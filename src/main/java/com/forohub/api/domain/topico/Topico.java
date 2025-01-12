@@ -37,6 +37,7 @@ public class Topico {
 
     private boolean activo;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private StatusTopico status;
 
@@ -48,19 +49,10 @@ public class Topico {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @Getter
     @OneToMany(mappedBy = "topico", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Respuesta> respuestas;
-
-    public Topico() {}
-
-    public StatusTopico getStatus() {
-        return this.status;
-    }
-
-    public List<Respuesta> getRespuestas() {
-        return this.respuestas;
-    }
 
 
     public Topico(DatosRegistroTopico datosRegistroTopico, Curso curso, Usuario usuario) {

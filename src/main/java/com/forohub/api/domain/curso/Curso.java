@@ -1,8 +1,6 @@
 package com.forohub.api.domain.curso;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,9 +21,6 @@ public class Curso {
 
     @Enumerated(EnumType.STRING)
     private CategoriaCurso categoria;
-
-    public Curso() {
-    }
 
     public Curso(DatosRegistroCurso datosRegistroCurso) {
         this.nombre = datosRegistroCurso.nombre();

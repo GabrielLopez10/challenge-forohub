@@ -1,15 +1,14 @@
 package com.forohub.api.service;
 
-import com.forohub.api.domain.curso.Curso;
 import com.forohub.api.domain.perfil.Perfil;
 import com.forohub.api.domain.perfil.PerfilRepository;
 import com.forohub.api.domain.usuario.DatosRegistroUsuario;
 import com.forohub.api.domain.usuario.Usuario;
 import com.forohub.api.domain.usuario.UsuarioRepository;
-import jakarta.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -26,6 +25,9 @@ public class UsuarioService {
     @Autowired
     private PerfilRepository perfilRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
   /*  // Método para crear un nuevo usuario
     public Usuario crearUsuario(DatosRegistroUsuario datosRegistroUsuario) {
         if (usuarioRepository.existsByCorreoElectronico(datosRegistroUsuario.correoElectronico())) {
@@ -37,6 +39,8 @@ public class UsuarioService {
     }*/
 
     public Usuario registrarUsuario(DatosRegistroUsuario datos) {
+        String contrasenaEncriptada = passwordEncoder.encode(datos.contrasena());
+
         Set<Perfil> perfiles = new HashSet<>(perfilRepository.findAllById(datos.perfilesIds()));
 
         Usuario usuario = new Usuario(datos);
