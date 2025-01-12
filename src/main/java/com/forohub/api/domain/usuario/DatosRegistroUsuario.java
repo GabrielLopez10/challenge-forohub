@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public record DatosRegistroUsuario(
-        @NotNull(message = "El nombre es obligatorio")
         String nombre,
 
         @NotNull(message = "El correo electrónico es obligatorio")
@@ -14,8 +13,7 @@ public record DatosRegistroUsuario(
 
         @NotNull(message = "La contraseña es obligatoria")
         String contrasena,
-
-        @NotNull
+        
         List<Long> perfilesIds
 
 ) {

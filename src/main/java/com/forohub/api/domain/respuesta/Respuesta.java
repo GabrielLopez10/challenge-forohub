@@ -29,6 +29,7 @@ public class Respuesta {
 
     private LocalDateTime fechaCreacion;
 
+    @Getter
     private boolean solucion;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -39,12 +40,6 @@ public class Respuesta {
     @JoinColumn(name = "topico_id")
     @JsonBackReference
     private Topico topico;
-
-    public Respuesta() {}
-
-    public boolean isSolucion() {
-        return this.solucion;
-    }
 
     public Respuesta(DatosRegistroRespuesta datosRegistroRespuesta, Usuario usuario, Topico topico) {
         this.mensaje = datosRegistroRespuesta.mensaje();

@@ -1,22 +1,15 @@
 package com.forohub.api.service;
 
-import com.forohub.api.domain.curso.CategoriaCurso;
 import com.forohub.api.domain.curso.Curso;
-import com.forohub.api.domain.curso.CursoRepository;
 import com.forohub.api.domain.topico.DatosRegistroTopico;
 import com.forohub.api.domain.topico.StatusTopico;
 import com.forohub.api.domain.topico.Topico;
 import com.forohub.api.domain.topico.TopicoRepository;
 import com.forohub.api.domain.usuario.Usuario;
-import com.forohub.api.domain.usuario.UsuarioRepository;
-import com.forohub.api.infra.errores.ValidacionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TopicoService {

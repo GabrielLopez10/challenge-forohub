@@ -1,4 +1,4 @@
 package com.forohub.api.infra.security;
 
-public record DatosJWTToken() {
+public record DatosJWTToken(String jwTtoken) {
 }
