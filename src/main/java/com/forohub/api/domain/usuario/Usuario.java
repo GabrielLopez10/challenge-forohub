@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -44,6 +45,11 @@ public class Usuario implements UserDetails {
         this.nombre = datosRegistroUsuario.nombre();
         this.correoElectronico = datosRegistroUsuario.correoElectronico();
         this.contrasena = datosRegistroUsuario.contrasena();
+    }
+
+    public Usuario(DatosLoginUsuario datosLoginUsuario) {
+        this.correoElectronico = datosLoginUsuario.correoElectronico();
+        this.contrasena = datosLoginUsuario.contrasena();
     }
 
     public void agregarPerfil(Perfil perfil) {
