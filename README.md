@@ -15,8 +15,8 @@ la gestión de tópicos, respuestas y usuarios con roles y autenticación basada
 - Gestión de usuarios con perfiles (**ADMIN, USER**).
 - CRUD para tópicos, cursos, usuarios y respuestas.
 - Autenticación y autorización con JWT.
-- Persistencia de datos mediante **Flyway** y bases de datos **MariaDB**
-- Pruebas automatizadas para endpoints críticos usando **JUnit** y **MockMvc**
+- Persistencia de datos mediante **Flyway** y bases de datos **MariaDB**.
+- Pruebas automatizadas para endpoints críticos usando **JUnit** y **MockMvc**.
 
 ## Tecnologías utilizadas 🛠️
 - **Lenguaje:** Java 17 o superior.
@@ -24,7 +24,7 @@ la gestión de tópicos, respuestas y usuarios con roles y autenticación basada
     - Spring Data JPA
 - **Autenticación y Autorización**: Spring Security, JWT, Bcrypt.
 - **Documentación**: Swagger/OpenAPI
-- **Base de Datos:** MariaDB.
+- **Base de Datos:** MySQL o MariaDB.
 - **Postman** o **Insomnia** para probar los endpoints.
 
 
